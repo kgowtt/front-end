@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Layout-02</title>
+    <style>
+    html,body,p{
+        margin:0px;
+        padding: 0px; 
+    }
+    /* ---------------------------------------- */
+    #header-layout {
+        display: flex;
+        flex-flow: row nowrap;
+    }
+
+    #header-layout .logo-box {
+        order: 1;
+        display: flex;
+        flex: 0 0 auto;
+        width: 100%;
+    }
+
+    #header-layout .selectContent {
+        order: 2;
+        display: flex;
+        flex: 1 1 auto;
+        flex-flow: column nowrap;
+        overflow: hidden;
+    }
+
+    @media (min-width : 992px) {
+        #header-layout .logo-box {
+            max-width: 250px;
+
+        }
+    }
+
+
+    @media (max-width : 991px) {
+        #header-layout {
+            flex-flow: column nowrap;
+
+        }
+    }
+
+    #header-layout .wrap {
+        display: flex;
+        border: 1px solid #777;
+    }
+
+    #header-layout .wrap .left {
+        width: 100px;
+        height: 100px;
+        margin: 10px;
+        border: 1px solid #777;
+    }
+
+    #header-layout .wrap .right {
+        flex: 1;
+        overflow: hidden;
+    }
+
+    #header-layout .wrap .content {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="header-layout">
+        <div class="logo-box">
+            <span>內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容</span>
+        </div>
+        <div class="selectContent">
+            <div class="wrap">
+                <div class="left">
+                </div>
+                <div class="right">
+                    <p class="name">標題標題標題標題</p>
+                    <p class="content">內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Layout-01</title>
+    <style>
+    html,body{
+        margin:0px; 
+    }
+    /* ---------------------------------------- */
+    #head-main {
+        display: flex;
+        flex-flow: row nowrap;
+    }
+
+    #head-main .leftBox {
+        order: 1;
+    }
+
+    #head-main .rightBox {
+        order: 2;
+        width: 100%;
+    }
+
+    @media (min-width : 992px) {
+        #head-main .rightBox {
+            max-width: 250px;
+        }
+    }
+
+
+    @media (max-width : 991px) {
+        #head-main {
+            flex-flow: column nowrap;
+        }
+    }
+
+    .rightBox{
+            background-color:   #777;
+            color:  #fff;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="head-main">
+        <div class="leftBox">
+            內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容
+        </div>
+        <div class="rightBox">
+            螢幕縮小這區塊寬度都是維持在250px，直到991px才會往下掉
+        </div>
+    </div>
+</body>
+
+</html>

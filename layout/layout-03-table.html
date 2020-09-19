@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>layout-03-table</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <style>
+    .table-rwd-use {}
+
+    /*這是額外做顏色，沒有什麼意義*/
+    tr.tr-only-hide {
+        color: #000;
+    }
+
+    @media (max-width: 736px) {
+        .table-rwd-use {
+            min-width: 100%;
+        }
+
+        /*針對tr去做隱藏*/
+        tr.tr-only-hide {
+            display: none !important;
+        }
+
+        /*讓tr變成區塊主要讓他有個區塊*/
+        .table-rwd-use tr {
+            display: block;
+            border: 1px solid #ddd;
+            margin-top: 5px;
+        }
+
+        .table-rwd-use td {
+            text-align: left;
+            font-size: 15px;
+            overflow: hidden;
+            width: 100%;
+            display: block;
+        }
+
+        .table-rwd-use td:before {
+            /*最重要的就是這串*/
+            content: attr(data-th) " : ";
+            /*最重要的就是這串*/
+            display: inline-block;
+            text-transform: uppercase;
+            font-weight: bold;
+            margin-right: 10px;
+            color: #D20B2A;
+        }
+
+        /*當RWD縮小的時候.table-bordered 會有兩條線，所以針對.table-bordered去做修正*/
+        .table-rwd-use.table-bordered td,
+        .table-rwd-use.table-bordered th,
+        .table-rwd-use.table-bordered {
+            border: 0;
+        }
+
+    }
+    </style>
+</head>
+
+<body>
+    <table class="table table-striped table-bordered table-rwd-use">
+        <tr class="tr-only-hide">
+            <th>序號</th>
+            <th>名稱</th>
+            <th>售價</th>
+            <th>其他</th>
+        </tr>
+        <tr>
+            <td data-th="序號">1</td>
+            <td data-th="名稱">產品名稱產品名稱產品名稱</td>
+            <td data-th="售價">500</td>
+            <td data-th="其他">其他文字內容其他文字內容其他文字內容其他文字內容其他文字內容其他文字內容</td>
+        </tr>
+        <tr>
+            <td data-th="序號">2</td>
+            <td data-th="名稱">產品名稱產品名稱產品名稱</td>
+            <td data-th="售價">500</td>
+            <td data-th="其他">其他文字內容其他文字內容其他文字內容其他文字內容其他文字內容其他文字內容</td>
+        </tr>
+    </table>
+</body>
+
+</html>
