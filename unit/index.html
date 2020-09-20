@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>單元測試紀錄</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+    span.remarks {
+        display: block;
+        color: #ff6b00;
+    }
+
+    span.red {
+        display: block;
+        color: red;
+    }
+
+    .hilightColor{
+        color: #47a010!important;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h3>Mocha Chai 進行測試</h3>
+        <ul class="list-group">
+            <li class="list-group-item"><a href="https://javascript.ruanyifeng.com/tool/testing.html" target="_blank">JavaScript 程序測試</a></li>
+            <li class="list-group-item"><a href="https://wcc723.github.io/development/2020/02/02/jest-intro/" target="_blank">十分鐘上手前端單元測試 - 使用 Jest</a></li>
+            <li class="list-group-item"><a href="https://www.youtube.com/watch?v=9ogXxXB3gic" target="_blank">單元測試工具鏈Mocha Chai Sinon 實戰(上)(視頻)</a></li>
+            <li class="list-group-item"><a href="https://www.jianshu.com/p/52b8aabe51dc" target="_blank">javascript单元测试-mocha</a></li>
+            <li class="list-group-item"><a class="hilightColor" href="https://medium.com/@bebebobohaha/%E5%89%8D%E7%AB%AF%E5%96%AE%E5%85%83%E6%B8%AC%E8%A9%A6%E5%85%A5%E9%96%80-mocha%E8%88%87chai-b3037b3a1de1" target="_blank">[JavaScript] 前端單元測試入門 — Mocha與chai</a></li>
+            <li class="list-group-item"><a class="hilightColor" href="https://medium.com/@wyingqian365/node-js-%E5%96%AE%E5%85%83%E6%B8%AC%E8%A9%A6-%E4%B8%A6%E8%BC%B8%E5%87%BA%E5%8F%AF%E8%AE%80%E6%80%A7%E9%AB%98%E7%9A%84%E6%B8%AC%E8%A9%A6%E5%A0%B1%E5%91%8A-2c80b6c359bb" target="_blank">[node.js]單元測試 | 並輸出可讀性高的測試報告</a></li>
+            <li class="list-group-item"><a class="hilightColor" href="http://www.ruanyifeng.com/blog/2015/12/a-mocha-tutorial-of-examples.html" target="_blank">測試框架Mocha 實例教程</a></li>
+        </ul>
+        <br>
+        <br>
+        <div>
+            <p>mkdir '創建資料夾'</p>
+            <p>cd '資料夾'</p>
+            <p>
+                npm init -y
+                <span class="remarks">指令會將所在目錄設為npm package，也就是會新增一個package.json檔</span>
+            </p>
+            <p>
+                npm install --save-dev mocha
+            </p>
+            <p>
+                npm install --save-dev chai
+            </p>
+            <p>
+                <span class="red">"scripts": {</span>
+                <span class="red">"test": "mocha || true"</span>
+                <span class="red">},</span>
+                <span class="remarks">
+                    在package.json中加入上面脚本，接著就可以透過 npm test 執行 mocha 測試
+                </span>
+            </p>
+            <p>
+                在根目錄新建test資料夾/test.js文件 => console.log('hello world');
+                <span class="red">npm test</span>
+                <span class="remarks">
+                    測試文件需要放在test目錄下， mocka 執行時會執行 test 目錄下的所有 js 文件(僅限 test 以下這層，對於 test/subtest 這層並不執行)
+                </span>
+            </p>
+            <p>
+                除了在命令行運行，Mocha還可以在瀏覽器運行。<br/>
+                <b class="hilightColor">mocha init目錄資料夾</b>
+            </p>
+            <!-- mocha -t 50000 test<br> -->
+        </div>
+        <br>
+        <br>
+        <hr>
+        <span>單元測試 (Unit testing)、整合測試 (Integration testing)、端對端測試 (E2E testing)</span>
+        <hr>
+        <h3>單元測試其他工具</h3>
+        <ul>
+            <li><a href="https://jestjs.io/" target="_blank">jestjs</a></li>
+        </ul>
+        <br>    
+        <br>    
+        <br>    
+    </div>
+</body>
+
+</html>
