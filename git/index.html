@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Git</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        span.remarks{
+            display: block;
+            color: #ff6b00;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h3>GITHUB上傳步驟</h3>
+        <ul class="list-group">
+            <li class="list-group-item">
+                <h5>步驟一:移動到要下載到的位置</h5>  
+                cd '桌面路徑'
+            </li>
+            <li class="list-group-item">
+                <h5>步驟二:建立一個專案(Clone with HTTPS)</h5>  
+                git clone '下載git clone位置'
+            </li>
+            <li class="list-group-item">項目更新</li>
+            <li class="list-group-item">
+                <h5>步驟三:更新項目</h5>  
+                cd '移動到項目資料夾'
+            </li>
+            <li class="list-group-item">
+                git status .
+                <span class="remarks">git status(縮寫為 git st) 就是確認專案資料夾裡面是否有檔案新增或刪除，紅色文字表示新增的，GitHub沒有這些資料</span>
+            </li>
+            <li class="list-group-item">
+                git add .
+                <span class="remarks">新增的檔案加入</span>
+            </li>
+            <li class="list-group-item">
+                git status
+                <span class="remarks">確認剛新增的檔案是否成功加入</span>
+            </li>
+            <li class="list-group-item">git commit -m '更新敘述'</li>
+            <li class="list-group-item">git push '上傳git clone位置'</li>
+            <li class="list-group-item">'打帳密'</li>
+        </ul>
+        
+        <a href="https://medium.com/@s110319022/github-%E5%85%A5%E9%96%80-%E4%BA%8C-%E4%BD%BF%E7%94%A8%E7%B5%82%E7%AB%AF%E6%A9%9F%E4%B8%8A%E5%82%B3%E6%AA%94%E6%A1%88%E5%88%B0github-cfa55e1903fa" target="_blank">參考網站</a>   
+    </div>
+</body>
+
+
+</html>
