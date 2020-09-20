@@ -11,15 +11,177 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        span.remarks {
+        display: block;
+        color: #ff6b00;
+    }
+
+    span.red {
+        display: block;
+        color: red;
+    }
+
+    .hilightColor{
+        color: #47a010!important;
+    }
+    </style>
 </head>
 
 <body>
     <div class="container">
-        <h3>Angular紀錄</h3>
-        <!-- 
+        <h3>Webpack紀錄</h3>
         <ul class="list-group">
-            <li class="list-group-item"><a href="" target="_blank"></a></li>
-        </ul> -->
+            <li class="list-group-item">服務端依賴安裝</li>
+            <li class="list-group-item">
+                npm init
+                <span class="remarks">初始化</span>
+            </li>
+            <li class="list-group-item">npm install express --save</li>
+            <li class="list-group-item">
+                npm install axios --save
+                <span class="remarks">服務端請求</span>
+            </li>
+        </ul>
+        <div>
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExampleA" aria-expanded="false" aria-controls="collapseExampleA">
+                index.js
+            </button>
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExampleB" aria-expanded="false" aria-controls="collapseExampleB">
+                package.json
+            </button>
+        </div>
+        <br>
+        <div class="collapse" id="collapseExampleA">
+            <div class="card card-body">
+            <pre class="codeblock prettyprint">
+            let express = require('express');
+            let axios = require('axios');
+
+
+
+            let app =express();
+
+
+            app.all('*', function(req, res, next) {
+                res.header("Access-Control-Allow-Origin", "*");
+                res.header("Access-Control-Allow-Headers", "X-Requested-With,Content-Type");
+                res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+                next();
+            });
+
+
+            // Cookie有時間戳
+            let options={
+                headers:{
+                    'Cookie': 'xq_a_token=4db837b914fc72624d814986f5b37e2a3d9e9944; xqat=4db837b914fc72624d814986f5b37e2a3d9e9944; xq_r_token=2d6d6cc8e57501dfe571d2881cabc6a5f2542bf8; xq_id_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ1aWQiOi0xLCJpc3MiOiJ1YyIsImV4cCI6MTYwMDQ4MzAwNywiY3RtIjoxNTk4NDg3NDI3NjA0LCJjaWQiOiJkOWQwbjRBWnVwIn0.aKH_IZCKxyI1ywe-8hNZaVhrINR24aOinZ8MQ0wlx6YgtVIK3xLFr69Ha0PJmQH70BUHgUxMFEBbI5v2GRbB00oz-sYwaurN8FzRjFLUcis9Ck2F-K527sgEc01hcYia-Ns616t1wDBuk_A4SZODxKyckFFN_-JLo_UMUQFrwQ0wLLYDk0C1g3R4OxEfYEiKAjQf09MeFCPiE-j_dIFH05824P-RcXM1H-4SlC0pNADTCzeJ9EO6mhQ3v81wyYls1YYC-0bHDODRT8KZtM4epUoUYLbV-WrfQC2jxnzEo9ebMFSp4sambvhH5M_mHSfjGNt8r-VxIrtH2BeT-GoxFQ; u=121598487464631; device_id=24700f9f1986800ab4fcc880530dd0ed; Hm_lvt_1db88642e346389874251b5a1eded6e3=1598487469,1598487475,1598487492; Hm_lpvt_1db88642e346389874251b5a1eded6e3=1598573520',
+                },
+            }
+
+            app.get('/',(req,res)=>{
+                res.send('apiSewver');
+            });
+
+
+            // 指數
+            app.get('/api/index/quote',async (req,res)=>{
+
+                let httpUrl ="https://stock.xueqiu.com/v5/stock/batch/quote.json?symbol=SH000001,SZ399001,SZ399006,SH000688,HKHSI,HKHSCEI,HKHSCCI,.DJI,.IXIC,.INX";
+
+
+                let result;
+                try{
+                    result = await axios.get(httpUrl,options);
+                }catch(error){
+                    console.log(error);
+                }
+                res.json(result.data);
+            });
+
+            //熱股榜 
+            app.get('/api/index/hotStock',async (req,res)=>{
+                // ?index= 10 全球  12滬深  13港股  11美股
+
+                let index =req.query.index?req.query.index:12;    
+                let httpUrl =`https://stock.xueqiu.com/v5/stock/hot_stock/list.json?size=8&_type=${index}&type=${index}`;
+                let result= await axios.get(httpUrl,options);
+                res.json(result.data);
+            });
+
+            //財金新聞  雪球熱帖
+            app.get('/api/index/news',async (req,res)=>{
+                // ?category= -1 推薦  
+                let category =req.query.category?req.query.category:-1;    
+
+                let httpUrl =`https://xueqiu.com/statuses/hot/listV2.json?since_id=${category}&max_id=-1&size=15`;
+                let result= await axios.get(httpUrl,options);
+                res.json(result.data);
+            });
+
+            app.get('/api/index/livenews',async (req,res)=>{
+                let httpUrl =`https://xueqiu.com/statuses/livenews/list.json?since_id=-1&max_id=-1&count=15`;
+                let result= await axios.get(httpUrl,options);
+                res.json(result.data);
+            });
+
+            app.listen(8080,()=>{
+                console.log('server start:','http://localhost:8080');
+            })
+
+            // node index.js 進行啟動
+            // ctrl +c 結束運行
+            </pre>
+            </div>
+        </div>
+        <div class="collapse" id="collapseExampleB">
+            <div class="card card-body">
+            <pre class="codeblock prettyprint">
+            {
+              "name": "server",
+              "version": "1.0.0",
+              "description": "",
+              "main": "index.js",
+              "scripts": {
+                "test": "echo \"Error: no test specified\" && exit 1"
+              },
+              "author": "",
+              "license": "ISC",
+              "dependencies": {
+                "axios": "^0.20.0",
+                "express": "^4.17.1"
+              }
+            }
+            </pre>
+            </div>
+        </div>
+        <br>
+        <h3>Angular紀錄</h3>
+        <ul class="list-group">
+            <li class="list-group-item">
+                ng new project-nam
+                <span class="remarks">創立新的專案</span>
+            </li>
+            <li class="list-group-item">
+                cd project-name
+            </li>
+            <li class="list-group-item">
+                npm install
+            </li>
+            <li class="list-group-item">
+                npm start
+                <span class="remarks">運行</span>
+            </li>
+            <hr>
+
+            <li class="list-group-item">
+                ng g component view/index
+                <span class="remarks">創建頁面組件</span>
+            </li>
+            <li class="list-group-item">
+                npm install axios --save 
+                <span class="remarks">服務端請求</span>
+            </li>
+        </ul>
     </div>
 </body>
 
