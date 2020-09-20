@@ -1,0 +1,21 @@
+<header>
+  <div class="container contBetween">
+    <div class="logoBox">
+      <img class="logo" src="./../assets/img/logo.png" alt="">
+    </div>
+    <nav class="headerTop">
+      <ul>
+        <li><a [routerLink]="['/']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><span>首頁</span></a></li>
+        <li><a [routerLink]="['/screener']" routerLinkActive="active"><span>股票篩選</span></a></li>
+        <li><a [routerLink]="['/newStock']" routerLinkActive="active"><span>新股上市</span></a></li>
+      </ul>
+      <div class="searchBox">
+        <input type="text" class="form-control-use">
+        <button class="btn-use search-use">搜尋</button>
+      </div>
+    </nav>
+  </div>
+</header>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
